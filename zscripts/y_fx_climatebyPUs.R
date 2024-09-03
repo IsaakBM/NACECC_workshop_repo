@@ -70,7 +70,7 @@ climatevar_feature <- function(rs_path, shp_path, outdir, proj.geo, ...) {
         rs_shp <- dplyr::right_join(shp_file, rs_bypu, "FID")
         colnames(rs_shp) <- c(stringr::str_remove_all(string = names(rs_shp), pattern = "weighted_mean."))
       # Begin the parallel structure      
-        cores  <-  20
+        cores  <-  detectCores() -1
         cl <- makeCluster(cores)
         registerDoParallel(cl)  
         nms <- names(rs_shp)
