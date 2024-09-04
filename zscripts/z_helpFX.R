@@ -3,15 +3,20 @@
 # NO GUARANTEES THAT CODE IS CORRECT
 # Caveat Emptor!
 
-library(terra)
 library(sf)
-library(ggplot2)
+library(terra)
+library(stringr)
 library(dplyr)
+library(data.table)
+library(future.apply)
+library(parallel)
+library(doParallel)
+library(foreach)
+library(ggplot2)
 library(rnaturalearth)
 library(rnaturalearthdata)
 library(tidyr)
 library(transformr)
-library(stringr)
 library(readr)
 
 ########################
