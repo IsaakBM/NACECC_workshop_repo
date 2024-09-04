@@ -7,13 +7,6 @@
 # It gives you a sense of the distribution shape, but it can sometimes obscure or smooth out smaller peaks or variations 
 # if they are not prominent enough.
 
-library(dplyr)
-library(ggplot2)
-library(patchwork)
-library(units)
-library(ggtext)
-library(gdata)
-
 ########################
 ####### Generalities
 ########################
@@ -30,11 +23,11 @@ theme_op01 <- theme(plot.title = element_text(face = "plain", size = 20, hjust =
                     legend.key.width = unit(1.5, "cm"))
 
 ########################
-####### function to get
-####### a list element 
+####### ForagingTransit 
+####### function
 ########################
 
-modelvsrealH <- function(indirData, indirModel) {
+ForagingTransit <- function(indirFor, indirTran) {
   # 
     library(dplyr)
     library(ggplot2)
@@ -43,12 +36,12 @@ modelvsrealH <- function(indirData, indirModel) {
     library(gdata)
   
   # 
-    lsO <- list.files(path = indirData, 
+    lsO <- list.files(path = indirFor, 
                       pattern = ".rds", 
                       all.files = TRUE, 
                       full.names = TRUE, 
                       recursive = FALSE)
-    lsS <- list.files(path = indirModel, 
+    lsS <- list.files(path = indirTran, 
                       pattern = ".rds", 
                       all.files = TRUE, 
                       full.names = TRUE, 
@@ -75,25 +68,23 @@ modelvsrealH <- function(indirData, indirModel) {
       
     # 
       FO <- dfOr %>% 
-        dplyr::rename(DistHFrontO = DistHFront) %>% 
-        dplyr::select(DistHFrontO)
-      # median 2.347741 km
+        dplyr::rename(DistHFrontF = DistHFront) %>% 
+        dplyr::select(DistHFrontF)
       FS <- dfS %>% 
-        dplyr::mutate(DistHFrontS = DistHFront) %>% 
-        dplyr::select(DistHFrontS)
-      # median: 26.1951 [km]
+        dplyr::mutate(DistHFrontT = DistHFront) %>% 
+        dplyr::select(DistHFrontT)
     # 
       if(nrow(FO) != nrow(FS)) {
         FF <- gdata::cbindX(FO, FS) %>% 
           as_tibble() %>% 
-          dplyr::mutate(DistHFrontO = as.numeric(DistHFrontO), 
-                        DistHFrontS = as.numeric(DistHFrontS))
+          dplyr::mutate(DistHFrontF = as.numeric(DistHFrontF), 
+                        DistHFrontT = as.numeric(DistHFrontT))
         dfF.ls <- list(DFF, FF)
         } else {
           FF <- cbind(FO, FS) %>% 
             as_tibble() %>% 
-            dplyr::mutate(DistHFrontO = as.numeric(DistHFrontO), 
-                          DistHFrontS = as.numeric(DistHFrontS))
+            dplyr::mutate(DistHFrontF = as.numeric(DistHFrontF), 
+                          DistHFrontT = as.numeric(DistHFrontT))
           dfF.ls <- list(DFF, FF)
         }
       return(dfF.ls)
@@ -101,22 +92,17 @@ modelvsrealH <- function(indirData, indirModel) {
 
 
 ########################
-####### plot ENTROPIES
-####### and MMF 
+####### 
+####### 
 ########################
 
-entropie_mmf <- function(input, xlabs, ylabs) {
+kernel_ggplot <- function(input, xlabs, ylabs) {
   
   df01 <- input[[1]]
   df02 <- input[[2]]
   
   ggp01 <- ggplot(df02, aes(x = x)) +
     # Top
-      # geom_histogram(aes(x = DistHFrontO, y = after_stat(density)),
-      #                bins = 30,
-      #                colour = "#404040",# Soft Black for border
-      #                fill = "#1f77b4",
-      #                binwidth = 2) +
       geom_density(aes(x = DistHFrontO, y = after_stat(density)), 
                    lwd = 1, 
                    colour = "#1f77b4",
@@ -124,11 +110,6 @@ entropie_mmf <- function(input, xlabs, ylabs) {
                    alpha = 0.50, 
                    adjust = 0.5) +
     # Bottom
-      # geom_histogram(aes(x = DistHFrontS, y = after_stat(-density)),
-      #                bins = 30,
-      #                colour = "#404040",  # Soft Black for border
-      #                fill = "#ff7f0e",    # Orange for fill
-      #                binwidth = 2) +
       geom_density(aes(x = DistHFrontS, y = after_stat(-density)), 
                    lwd = 1, 
                    colour = "#a8ddb5",  # #a8ddb5
