@@ -3,8 +3,7 @@
 # NO GUARANTEES THAT CODE IS CORRECT
 # Caveat Emptor!
 
-# source("zscripts/z_helpFX.R")
-source("/home/sandbox-sparc/NACECC-Initiative/zscripts/z_helpFX.R")
+source("zscripts/z_helpFX.R")
 
 neardist_sim <- function(pus, fsle_sf, fdata, cutoff, output) {
   
@@ -122,21 +121,8 @@ neardist_sim <- function(pus, fsle_sf, fdata, cutoff, output) {
 
 # Focus on -> 2021-07; 2021-08
 # SeaBirds
-  # system.time(tt <- neardist_sim(pus = "input_layers/boundaries/PUs_NA_04km2.shp",
-  #                                fsle_sf = "data_rout/dt_NA_allsat_madt_fsle_2021-08.rds",
-  #                                fdata = "inputs_sb/sb_LSP_T",
-  #                                cutoff = 0.75,
-  #                                output = "outputs_sb/sb_LSP_T/"))
-  
-  # system.time(tt <- neardist_sim(pus = "/home/sandbox-sparc/NACECC-Initiative/input_layers/boundaries/PUs_NA_04km2.shp",
-  #                                fsle_sf = "/home/sandbox-sparc/NACECC-Initiative/data_rout/dt_NA_allsat_madt_fsle_2021-08.rds",
-  #                                fdata = "/home/sandbox-sparc/NACECC-Initiative/inputs_sb/sb_LSP_F",
-  #                                cutoff = 0.75,
-  #                                output = "/scratch/sparc/outputs_sb/sb_LSP_F/"))
-  
-  system.time(tt <- neardist_sim(pus = "/home/sandbox-sparc/NACECC-Initiative/input_layers/boundaries/PUs_NA_04km2.shp",
-                                 fsle_sf = "/home/sandbox-sparc/NACECC-Initiative/data_rout/dt_NA_allsat_madt_fsle_2021-08.rds",
-                                 fdata = "/home/sandbox-sparc/NACECC-Initiative/inputs_sb/sb_LSP_T",
-                                 cutoff = 0.75,
-                                 output = "/scratch/sparc/outputs_sb/sb_LSP_T/"))
-  
+   system.time(tt <- neardist_sim(pus = "input_layers/boundaries/PUs_NA_04km2.shp",
+                                  fsle_sf = "data_rout/dt_NA_allsat_madt_fsle_2021-08.rds",
+                                  fdata = "inputs_sb/sb_LSP_T",
+                                  cutoff = 0.75,
+                                  output = "outputs_sb/sb_LSP_T/"))
