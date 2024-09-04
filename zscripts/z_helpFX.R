@@ -18,6 +18,10 @@ library(rnaturalearthdata)
 library(tidyr)
 library(transformr)
 library(readr)
+library(patchwork)
+library(units)
+library(ggtext)
+library(gdata)
 
 ########################
 ####### Projections
