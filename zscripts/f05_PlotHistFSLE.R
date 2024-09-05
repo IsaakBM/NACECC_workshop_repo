@@ -12,4 +12,4 @@ dfF <- ForagingTransit(indirFor = "outputs_sb/sb_LSP_F",
 gg_dfF <- kernel_ggplot(input = dfF, 
                         xlabs = "Distance to high FSLE (km)", 
                         ylabs = "Density")
-ggsave("figures/z_testing/LSP_2021-07.png", plot = gg_dfF, width = 10, height = 6, dpi = 300, limitsize = FALSE)
+ggsave("figures/LSP_2021-07.png", plot = gg_dfF, width = 10, height = 6, dpi = 300, limitsize = FALSE)

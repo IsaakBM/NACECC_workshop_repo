@@ -103,14 +103,14 @@ kernel_ggplot <- function(input, xlabs, ylabs) {
   
   ggp01 <- ggplot(df02, aes(x = x)) +
     # Top
-      geom_density(aes(x = DistHFrontO, y = after_stat(density)), 
+      geom_density(aes(x = DistHFrontF, y = after_stat(density)), 
                    lwd = 1, 
                    colour = "#1f77b4",
                    fill = "#1f77b4",
                    alpha = 0.50, 
                    adjust = 0.5) +
     # Bottom
-      geom_density(aes(x = DistHFrontS, y = after_stat(-density)), 
+      geom_density(aes(x = DistHFrontT, y = after_stat(-density)), 
                    lwd = 1, 
                    colour = "#a8ddb5",  # #a8ddb5
                    fill = "#a8ddb5", # #a8ddb5
