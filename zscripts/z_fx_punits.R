@@ -22,8 +22,8 @@ source("zscripts/z_helpFX.R")
 ####### 
 ########################
 # Create polygon on the area of interest
-  bbox <- st_bbox(c(xmin = -54, xmax = -35, ymin = 40, ymax = 57), 
-                  crs = st_crs(LatLon)) %>% 
+  bbox <- st_bbox(c(xmin = -54, xmax = -35, ymin = 35, ymax = 57), 
+                  crs = st_crs(LatLon)) %>% # xmin = -54, xmax = -35, ymin = 40, ymax = 57
     st_as_sfc() %>% 
     st_transform(crs = robin)
   f_bbox <- bbox
