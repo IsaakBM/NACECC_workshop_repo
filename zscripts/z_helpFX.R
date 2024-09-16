@@ -22,6 +22,7 @@ library(patchwork)
 library(units)
 library(ggtext)
 library(gdata)
+library(exact_extract)
 
 ########################
 ####### Projections
